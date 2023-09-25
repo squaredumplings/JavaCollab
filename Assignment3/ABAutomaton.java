@@ -2,24 +2,26 @@ import java.util.Scanner;
 /**
 * Automatons A and B.
 *
-* TODO 3: FIll in your names and student IDs:
+* 
 *
-* @author NAME
-* @id ID
-* @author NAME
-* @id ID
+* @author Mihnea Buzoiu
+* @id 1923552
+* @author Nicholas Gurgu
+* @id 1952234
 */
+
 class ABAutomaton {
     Scanner scanner = new Scanner(System.in);
     
+    // converts from boolean to string for printing
     String genToString(boolean[] gen) {
         String retStr = "";
 
-        for (int i = 0; i < gen.length; i++){
-            if (gen[i] == false){
-                retStr += " ";
-            } else {
+        for (int i = 0; i < gen.length; i++) {
+            if (gen[i]) {
                 retStr += "*";
+            } else {
+                retStr += " ";
             }
         }
 
@@ -30,10 +32,10 @@ class ABAutomaton {
         // goes through a generation and creates future cells
         boolean[] nextGen = new boolean[gen.length];
 
-        for (int i = 1; i < gen.length - 1; i++){
-            if ((!gen[i - 1] && gen[i] && !gen[i + 1]) ||
-                (gen[i - 1] && gen[i] && gen[i + 1]) ||
-                (!gen[i - 1] && !gen[i] && !gen[i + 1])) {
+        for (int i = 1; i < gen.length - 1; i++) {
+            if ((!gen[i - 1] && gen[i] && !gen[i + 1]) 
+                || (gen[i - 1] && gen[i] && gen[i + 1]) 
+                || (!gen[i - 1] && !gen[i] && !gen[i + 1])) {
                 nextGen[i] = false;
             } else {
                 nextGen[i] = true;
@@ -46,11 +48,11 @@ class ABAutomaton {
         // goes through a generation and creates future cells
         boolean[] nextGen = new boolean[gen.length];
 
-        for (int i = 1; i < gen.length-1; i++){
-            if ((!gen[i-1] && gen[i] && !gen[i+1]) ||
-                (gen[i-1] && gen[i] && gen[i+1]) ||
-                (!gen[i-1] && !gen[i] && !gen[i+1]) ||
-                (gen[i-1] && gen[i] && gen[i+1])) {
+        for (int i = 1; i < gen.length - 1; i++) {
+            if ((!gen[i - 1] && gen[i] && gen[i + 1])
+                || (gen[i - 1] && gen[i] && gen[i + 1]) 
+                || (!gen[i - 1] && !gen[i] && !gen[i + 1]) 
+                || (gen[i - 1] && !gen[i] && gen[i + 1])) {
                 nextGen[i] = false;
             } else {
                 nextGen[i] = true;
@@ -61,16 +63,19 @@ class ABAutomaton {
 
     boolean[] readInitalGeneration(int length) {
         boolean[] initialGen = new boolean[length];
-        String textBlock = scanner.next(); // removes init_start
+        String textBlock = scanner.next(); 
+        textBlock = scanner.next(); // removes init_start
     
+        // reads and converts a number from string to int
         while (!textBlock.equals("init_end")) { 
-            // reads and converts a number from string to int
-            textBlock = scanner.next(); 
+            
             int cellHere = Integer.parseInt(textBlock);
 
             if ((1 <= cellHere) && (cellHere <= length)) {
                 initialGen[cellHere - 1] = true;
             }
+
+            textBlock = scanner.next();
         }
     
         return initialGen;
@@ -84,17 +89,14 @@ class ABAutomaton {
         int numOfGens = scanner.nextInt();
         boolean[] initGen = readInitalGeneration(genLength);
 
-        System.out.print(automaton + " ");
-        System.out.print(genLength + " ");
-        System.out.print(numOfGens + "\n");
-        System.out.print(initGen + "\n");
+        for (boolean i : initGen) {
+            if (i) {
+                System.out.print(1);
+            } else {
+                System.out.print(0);
+            }
+        }
 
-/* 
-B 61 20
-init_start 20 40 init_end
-*/
-
-        /*
         // Run the automaton
         boolean[] gen = initGen;
         for (int i = 0; i < numOfGens; i++) {
@@ -106,12 +108,13 @@ init_start 20 40 init_end
             if ("A".equals(automaton)) {
                 gen = nextGenA(gen);
             } else {
-            // B
+                // B
                 gen = nextGenB(gen);
             }
-        }*/
+        }
     }
+
     public static void main(String[] args) {
-    new ABAutomaton().run();
+        new ABAutomaton().run();
     }
 }
