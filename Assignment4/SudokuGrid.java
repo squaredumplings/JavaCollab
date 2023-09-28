@@ -21,10 +21,9 @@ public class SudokuGrid {
     private int cEmpty;
 
     /**
-     * [BLANK].
+     * Initializes the grid and sets rEmpty and cEmpty to -1.
      */
     public SudokuGrid() {
-        // Initialize the grid and set rEmpty and cEmpty to -1
         grid = defaultGrid;
 
         rEmpty = -1;
@@ -32,20 +31,18 @@ public class SudokuGrid {
     }
 
     /**
-     * [BLANK].
-     * @return [BLANK]
+     * Creates a copy of the SudokuGrid.
+     * @return SudokuGrid copy
      */
     public SudokuGrid copy() {
-        // Create a copy of the SudokuGrid and return it
         return null;
     }
 
     /**
-     * [BLANK].
-     * @return [BLANK]
+     * Searches for the next empty cell in reading order.
+     * @return coordinates as a Point
      */
     public Point findEmptyCell() {
-        // Find the next empty cell in reading order and return its coordinates as a Point
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (grid[i][j] == 0) {
@@ -59,10 +56,9 @@ public class SudokuGrid {
     }
 
     /**
-     * [BLANK].
+     * Prints the Sudoku grid.
      */
     public void print() {
-        // Print the Sudoku grid
         for (int i = 0; i < 9; i++) {
             if (i == 0 || i == 3 || i == 6) {
                 System.out.println("+-----------------+");
@@ -85,14 +81,14 @@ public class SudokuGrid {
     }
 
     /**
-     * [BLANK].
+     * Checks if filling the number d in the cell at row r and column c causes a conflict.
      * @param r row
      * @param c column
-     * @param d [BLANK]
-     * @return [BLANK]
+     * @param d the to be filled number
+     * @return true if a conflict is found, false if no conflicts are encountered
      */
     public boolean givesConflict(int r, int c, int d) {
-        // Check if filling the number d in the cell at row r and column c causes a conflict
+        // 
         if (rowConflict(r, d) || colConflict(c, d) || boxConflict(r, c, d)) {
             return true;
         }
@@ -100,13 +96,12 @@ public class SudokuGrid {
     }
 
     /**
-     * [BLANK].
+     * Checks if there is a conflict in the row r when filling the number d.
      * @param r row
-     * @param d [BLANK]
-     * @return [BLANK]
+     * @param d the to be filled number
+     * @return true if a conflict is found, false if the row is conflict free
      */
     private boolean rowConflict(int r, int d) {
-        // Check if there is a conflict in the row r when filling the number d
         for (int i = 0; i < 9; i++) {
             if (grid[r][i] == d) {
                 return true;
@@ -116,13 +111,12 @@ public class SudokuGrid {
     }
 
     /**
-     * [BLANK].
-     * @param r row
-     * @param d [BLANK]
-     * @return [BLANK]
+     * Checks if there is a conflict in the column c when filling the number d.
+     * @param c column
+     * @param d the to be filled number
+     * @return true if a conflict is found, false if the column is conflict free
      */
     private boolean colConflict(int c, int d) {
-        // Check if there is a conflict in the column c when filling the number d
         for (int i = 0; i < 9; i++) {
             if (grid[i][c] == d) {
                 return true;
@@ -132,15 +126,13 @@ public class SudokuGrid {
     }
 
     /**
-     * [BLANK].
+     * Checks if there is a conflict in the 3x3 box containing the cell at row r and column c when filling the number d.
      * @param r row
-     * @param d [BLANK]
-     * @return [BLANK]
+     * @param c column
+     * @param d the to be filled number
+     * @return true if a conflict is found, false if the box is conflict free
      */
     private boolean boxConflict(int r, int c, int d) {
-        // Check if there is a conflict in the 3x3 box containing the cell at row r and column c
-        // when filling the number d
-
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (grid[r / 3 * 3 + i][c / 3 * 3 + j] == d) {
