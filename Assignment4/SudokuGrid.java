@@ -23,6 +23,21 @@ public class SudokuGrid {
 
     public void print() {
         // Print the Sudoku grid
+        for (int i = 0; i < 9; i++) {
+            if (i == 0 || i == 3 || i == 6) {
+                System.out.println("+-----------------+");
+            }
+            for (int j = 0; j < 9; j++){
+                if (j == 0 || j == 3 || j == 6) {
+                    System.out.print("|");
+                } else {
+                    System.out.print(" ");
+                }
+                System.out.print(grid[i][j]);
+            }
+            System.out.println("|");
+        }
+        System.out.println("+-----------------+");
     }
 
     public void fillCell(int r, int c) {
