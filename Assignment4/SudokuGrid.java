@@ -1,41 +1,61 @@
 import java.awt.Point;
+import java.util.Scanner;
+
+/**
+ * [BLANK].
+ */
 
 public class SudokuGrid {
     private static final int SIZE = 9;
-    private static final int DIGIT_RANGE = 9;
-
-    private int[][] defaultGrid = new int[][] {
-        {0, 9, 0, 7, 3, 0, 4, 0, 0},   
-        {0, 0, 0, 0, 1, 0, 5, 0, 0},   
-        {3, 0, 4, 0, 0, 6, 9, 0, 0},   
-        {0, 0, 0, 0, 0, 2, 6, 4, 0},   
-        {0, 3, 0, 6, 5, 1, 0, 8, 0},   
-        {0, 0, 6, 9, 0, 7, 0, 0, 0},   
-        {5, 8, 2, 0, 0, 0, 0, 0, 0},   
-        {9, 0, 0, 0, 0, 3, 0, 2, 5},   
-        {6, 0, 3, 0, 7, 0, 8, 0, 0}, 
-    };
+    //private static final int DIGIT_RANGE = 9;
 
     private int[][] grid;
     private int rEmpty;
     private int cEmpty;
 
+    Scanner scan = new Scanner(System.in);
+
     /**
      * Initializes the grid and sets rEmpty and cEmpty to -1.
      */
-    public SudokuGrid() {
-        grid = defaultGrid;
+    public SudokuGrid(int[][] newGrid, int emptyRow, int emptyColumn) {
+        this.grid = newGrid;
 
-        rEmpty = -1;
-        cEmpty = -1;
+        this.rEmpty = -1;
+        this.cEmpty = -1;
     }
 
     /**
-     * Creates a copy of the SudokuGrid.
-     * @return SudokuGrid copy
+     * Initializes the grid and sets rEmpty and cEmpty to -1.
+     */
+    public void reformatInput() {
+        int[][] tempGrid = new int[SIZE][SIZE];
+
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                tempGrid[i][j] = scan.nextInt();
+            }
+        }
+
+        for (int i = 0; i < SIZE; i++) {
+            System.out.print("{");
+            for (int j = 0; j < SIZE; j++) {
+                System.out.print(tempGrid[i][j]);
+                if (j == SIZE - 1) {
+                    System.out.print("},");
+                } else {
+                    System.out.print(", ");
+                }
+            }
+            System.out.print("\n");
+        }
+    }
+
+    /**
+     * [BLANK].
      */
     public SudokuGrid copy() {
-        return null;
+        return new SudokuGrid(grid, rEmpty, cEmpty);
     }
 
     /**
@@ -43,8 +63,8 @@ public class SudokuGrid {
      * @return coordinates as a Point
      */
     public Point findEmptyCell() {
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
                 if (grid[i][j] == 0) {
                     rEmpty = i;
                     cEmpty = j;
@@ -56,28 +76,17 @@ public class SudokuGrid {
     }
 
     /**
-     * Prints the Sudoku grid.
+     * [BLANK].
      */
-    public void print() {
-        for (int i = 0; i < 9; i++) {
-            if (i == 0 || i == 3 || i == 6) {
-                System.out.println("+-----------------+");
-            }
-            for (int j = 0; j < 9; j++){
-                if (j == 0 || j == 3 || j == 6) {
-                    System.out.print("|");
-                } else {
-                    System.out.print(" ");
-                }
-                System.out.print(grid[i][j]);
-            }
-            System.out.println("|");
-        }
-        System.out.println("+-----------------+");
+    public void fillCell(int r, int c, int d) {
+        grid[r][c] = d;
     }
 
-    public void fillCell(int r, int c) {
-        // Fill the cell at row r and column c
+    /**
+     * [BLANK].
+     */
+    public void clearCell(int r, int c) {
+        grid[r][c] = 0;
     }
 
     /**
@@ -102,7 +111,7 @@ public class SudokuGrid {
      * @return true if a conflict is found, false if the row is conflict free
      */
     private boolean rowConflict(int r, int d) {
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < SIZE; i++) {
             if (grid[r][i] == d) {
                 return true;
             }
@@ -117,7 +126,7 @@ public class SudokuGrid {
      * @return true if a conflict is found, false if the column is conflict free
      */
     private boolean colConflict(int c, int d) {
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < SIZE; i++) {
             if (grid[i][c] == d) {
                 return true;
             }
@@ -126,7 +135,7 @@ public class SudokuGrid {
     }
 
     /**
-     * Checks if there is a conflict in the 3x3 box containing the cell at row r and column c when filling the number d.
+     * Checks if there is a conflict in the box containing the cell when filling the number.
      * @param r row
      * @param c column
      * @param d the to be filled number
@@ -141,5 +150,26 @@ public class SudokuGrid {
             }
         }
         return false;
+    }
+
+    /**
+     * Prints the Sudoku grid.
+     */
+    public void print() {
+        for (int i = 0; i < SIZE; i++) {
+            if (i == 0 || i == 3 || i == 6) {
+                System.out.println("+-----------------+");
+            }
+            for (int j = 0; j < SIZE; j++) {
+                if (j == 0 || j == 3 || j == 6) {
+                    System.out.print("|");
+                } else {
+                    System.out.print(" ");
+                }
+                System.out.print(grid[i][j]);
+            }
+            System.out.println("|");
+        }
+        System.out.println("+-----------------+ \n\n");
     }
 }
