@@ -2,12 +2,17 @@ import java.awt.Point;
 import java.util.Scanner;
 
 /**
- * [BLANK].
- */
+* SudokuGrid
+* This class represents a Sudoku grid and provides the method to solve it.
+*
+* @author Mihnea Buzoiu
+* @id 1923552
+* @author Nicholas Gurgu
+* @id 1952234
+*/
 
 public class SudokuGrid {
     private static final int SIZE = 9;
-    //private static final int DIGIT_RANGE = 9;
 
     private int[][] grid;
     private int rEmpty;
@@ -16,9 +21,11 @@ public class SudokuGrid {
     Scanner scan = new Scanner(System.in);
 
     /**
-     * Initializes the grid and sets rEmpty and cEmpty to -1.
+     * Constructs a SudokuGrid object with the given initial grid.
+     *
+     * @param newGrid    The initial Sudoku grid.
      */
-    public SudokuGrid(int[][] newGrid, int emptyRow, int emptyColumn) {
+    public SudokuGrid(int[][] newGrid) {
         this.grid = newGrid;
 
         this.rEmpty = -1;
@@ -26,7 +33,7 @@ public class SudokuGrid {
     }
 
     /**
-     * Initializes the grid and sets rEmpty and cEmpty to -1.
+     * Reads and reformats the input Sudoku grid. Used for testing.
      */
     public void reformatInput() {
         int[][] tempGrid = new int[SIZE][SIZE];
@@ -52,15 +59,16 @@ public class SudokuGrid {
     }
 
     /**
-     * [BLANK].
+     * Returns a copy of the grid and the coordinates of the next empty cell.
      */
     public SudokuGrid copy() {
-        return new SudokuGrid(grid, rEmpty, cEmpty);
+        return new SudokuGrid(grid);
     }
 
     /**
      * Searches for the next empty cell in reading order.
-     * @return coordinates as a Point
+     *
+     * @return Coordinates as a Point.
      */
     public Point findEmptyCell() {
         for (int i = 0; i < SIZE; i++) {
@@ -76,14 +84,21 @@ public class SudokuGrid {
     }
 
     /**
-     * [BLANK].
+     * Sets the targeted cell to the number d.
+     *
+     * @param r The row of the cell.
+     * @param c The column of the cell.
+     * @param d The number to fill in.
      */
     public void fillCell(int r, int c, int d) {
         grid[r][c] = d;
     }
 
     /**
-     * [BLANK].
+     * Sets the targeted cell to 0.
+     *
+     * @param r The row of the cell.
+     * @param c The column of the cell.
      */
     public void clearCell(int r, int c) {
         grid[r][c] = 0;
@@ -91,10 +106,11 @@ public class SudokuGrid {
 
     /**
      * Checks if filling the number d in the cell at row r and column c causes a conflict.
-     * @param r row
-     * @param c column
-     * @param d the to be filled number
-     * @return true if a conflict is found, false if no conflicts are encountered
+     *
+     * @param r The row of the cell.
+     * @param c The column of the cell.
+     * @param d The filled-in number.
+     * @return true if a conflict is found, false if no conflicts are encountered.
      */
     public boolean givesConflict(int r, int c, int d) {
         // 
@@ -106,9 +122,10 @@ public class SudokuGrid {
 
     /**
      * Checks if there is a conflict in the row r when filling the number d.
-     * @param r row
-     * @param d the to be filled number
-     * @return true if a conflict is found, false if the row is conflict free
+     *
+     * @param r The row to check.
+     * @param d The filled-in number.
+     * @return true if a conflict is found, false if the row is conflict-free.
      */
     private boolean rowConflict(int r, int d) {
         for (int i = 0; i < SIZE; i++) {
@@ -121,9 +138,10 @@ public class SudokuGrid {
 
     /**
      * Checks if there is a conflict in the column c when filling the number d.
-     * @param c column
-     * @param d the to be filled number
-     * @return true if a conflict is found, false if the column is conflict free
+     *
+     * @param c The column to check.
+     * @param d The filled-in number.
+     * @return true if a conflict is found, false if the column is conflict-free.
      */
     private boolean colConflict(int c, int d) {
         for (int i = 0; i < SIZE; i++) {
@@ -136,10 +154,11 @@ public class SudokuGrid {
 
     /**
      * Checks if there is a conflict in the box containing the cell when filling the number.
-     * @param r row
-     * @param c column
-     * @param d the to be filled number
-     * @return true if a conflict is found, false if the box is conflict free
+     *
+     * @param r The row of the cell.
+     * @param c The column of the cell.
+     * @param d The filled-in number.
+     * @return true if a conflict is found, false if the box is conflict-free.
      */
     private boolean boxConflict(int r, int c, int d) {
         for (int i = 0; i < 3; i++) {
