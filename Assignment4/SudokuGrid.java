@@ -59,6 +59,23 @@ public class SudokuGrid {
     }
 
     /**
+     * Checks if the final sudoku is correct using a temporary holder variable.
+     */
+    public boolean verify() {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                int holder = grid[i][j];
+                clearCell(i, j);
+                if (givesConflict(i, j, holder)) {
+                    return false;
+                }
+                fillCell(i, j, holder);
+            }
+        }
+        return true;
+    }
+
+    /**
      * Returns a copy of the grid and the coordinates of the next empty cell.
      */
     public SudokuGrid copy() {
@@ -189,6 +206,6 @@ public class SudokuGrid {
             }
             System.out.println("|");
         }
-        System.out.println("+-----------------+ \n\n");
+        System.out.println("+-----------------+");
     }
 }
