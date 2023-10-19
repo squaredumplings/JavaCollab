@@ -1,7 +1,7 @@
 package cblgame;
 
-import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
@@ -9,11 +9,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MenuPanel extends JPanel{
+public class MenuPanel extends JPanel implements ActionListener{
     private int scaleX;
     private int scaleY;    
 
-    public MenuPanel(int windowWidth, int windowHeight, ActionListener actionListener){
+    public MenuPanel(int windowWidth, int windowHeight){
         scaleX = windowWidth / 16;
         scaleY = windowHeight / 12;
         
@@ -28,7 +28,7 @@ public class MenuPanel extends JPanel{
         JButton startButton  = new JButton("Start");
         startButton.setBounds(6*scaleX, 5*scaleY, 4*scaleX, scaleY);
         startButton.setActionCommand("start");
-        startButton.addActionListener(actionListener);
+        startButton.addActionListener(this);
         this.add(startButton);
         startButton.setVisible(false);
         
@@ -37,7 +37,7 @@ public class MenuPanel extends JPanel{
         JButton optionsButton  = new JButton("Options");
         optionsButton.setBounds(6*scaleX, 7*scaleY, 4*scaleX, scaleY);
         optionsButton.setActionCommand("options");
-        optionsButton.addActionListener(actionListener);
+        optionsButton.addActionListener(this);
         this.add(optionsButton);
         optionsButton.setVisible(false);
 
@@ -45,7 +45,7 @@ public class MenuPanel extends JPanel{
         JButton quitButton  = new JButton("Quit");
         quitButton.setBounds(6*scaleX, 9*scaleY, 4*scaleX, scaleY);
         quitButton.setActionCommand("quit");
-        quitButton.addActionListener(actionListener);
+        quitButton.addActionListener(this);
         this.add(quitButton);
         quitButton.setVisible(false);
 
@@ -72,5 +72,11 @@ public class MenuPanel extends JPanel{
         g.drawImage(start, 720, 450, getWidth()/4, getHeight()/12, this);
         g.drawImage(options, 720, 630, getWidth()/4, getHeight()/12, this);
         g.drawImage(quit, 720, 810, getWidth()/4, getHeight()/12, this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }
 }

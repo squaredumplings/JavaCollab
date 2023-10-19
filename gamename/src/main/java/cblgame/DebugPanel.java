@@ -1,9 +1,7 @@
 package cblgame;
 
-import java.awt.Color;
-
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import java.awt.*;
+import javax.swing.*;
 
 public class DebugPanel extends JPanel{
     JTextArea debugText = new JTextArea();
