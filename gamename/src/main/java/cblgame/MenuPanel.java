@@ -30,6 +30,8 @@ public class MenuPanel extends JPanel{
         startButton.setActionCommand("start");
         startButton.addActionListener(actionListener);
         this.add(startButton);
+        startButton.setVisible(false);
+        
 
         // options button
         JButton optionsButton  = new JButton("Options");
@@ -37,6 +39,7 @@ public class MenuPanel extends JPanel{
         optionsButton.setActionCommand("options");
         optionsButton.addActionListener(actionListener);
         this.add(optionsButton);
+        optionsButton.setVisible(false);
 
         // quit button
         JButton quitButton  = new JButton("Quit");
@@ -44,6 +47,7 @@ public class MenuPanel extends JPanel{
         quitButton.setActionCommand("quit");
         quitButton.addActionListener(actionListener);
         this.add(quitButton);
+        quitButton.setVisible(false);
 
         //panel settings
         this.setBounds(0, 0, windowWidth, windowHeight);
@@ -55,11 +59,18 @@ public class MenuPanel extends JPanel{
     public void paint(Graphics g) {
         super.paint(g);
 
-        Image background = new ImageIcon("src\\main\\resources\\background.jpg").getImage();
-        Image title = new ImageIcon("src\\main\\resources\\title.jpg").getImage();
+        Image background = new ImageIcon("src\\main\\resources\\Game Background.png").getImage();
+        Image title = new ImageIcon("src\\main\\resources\\Title.png").getImage();
+        Image start = new ImageIcon("src\\main\\resources\\Start.png").getImage();
+        Image options = new ImageIcon("src\\main\\resources\\Options.png").getImage();
+        Image quit = new ImageIcon("src\\main\\resources\\Quit.png").getImage();
+
 
         // Draw the background image
         g.drawImage(background, 0, 0, getWidth(), getHeight(), this);
         g.drawImage(title, 480, 90, getWidth()/2, getHeight()/6, this);
+        g.drawImage(start, 720, 450, getWidth()/4, getHeight()/12, this);
+        g.drawImage(options, 720, 630, getWidth()/4, getHeight()/12, this);
+        g.drawImage(quit, 720, 810, getWidth()/4, getHeight()/12, this);
     }
 }
