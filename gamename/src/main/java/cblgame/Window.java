@@ -1,46 +1,57 @@
 package cblgame;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-public class Window extends JFrame implements ActionListener {
+public class Window extends JFrame {
 
-    private String UpAction = "w";
-    private String LeftAction = "a";
-    private String DownAction = "s";
-    private String RightAction = "d";
+    // private String UpAction = "w";
+    // private String LeftAction = "a";
+    // private String DownAction = "s";
+    // private String RightAction = "d";
+    private int windowWidth;
+    private int windowHeight;
+
+    MenuPanel menu;
+    GamePanel game;
        
-    public Window(int windowWidth, int windowHeight){
-        
-        DebugPanel debug = new DebugPanel(20, 20, 100, 200);
-        this.add(debug);
+    public Window(int x, int y){
 
-        MenuPanel menu = new MenuPanel(windowWidth, windowHeight, this);
-        this.add(menu);
-        
+        windowHeight = y;
+        windowWidth = x;
         // window settings
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // close window when clicking the x
-        this.setSize(windowWidth,windowHeight);
+        this.setSize(x, y);
         this.setResizable(false);
         this.setTitle("Cubix Conquest");
         this.getContentPane().setBackground(Color.BLACK);
         this.setLayout(null);
         this.setVisible(true);
+    }    
+
+    public void addMenu() {
+        menu = new MenuPanel(windowWidth, windowHeight);
+        this.add(menu);
     }
 
-
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+    public void addDebug() {
+        this.add(new DebugPanel());
     }
 
-    
+    public void addGame() {
+        game = new GamePanel(windowWidth, windowHeight);
+        this.add(game);
+    }
+
+    public void removeMenu() {
+        this.remove(menu);
+    }
+
+    // public void removeDebug() {
+    //     this.remove(debug);
+    // }
+
+    public void removeGame() {
+        this.remove(game);
+    }
 }

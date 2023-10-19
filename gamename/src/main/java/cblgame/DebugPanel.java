@@ -4,18 +4,24 @@ import java.awt.*;
 import javax.swing.*;
 
 public class DebugPanel extends JPanel{
-    JTextArea debugText = new JTextArea();
+    final int x = 40;
+    final int y = 40;
+    final int width = 150;
+    final int height = 200;
 
-    public DebugPanel(int x, int y, int width, int height) {
+    static JTextArea debugText = new JTextArea();
+
+    public DebugPanel() {
         debugText.setText("");
-
+        debugText.setOpaque(false);
+        debugText.setForeground(Color.white);
         // debug panel
         this.setBounds(x, y, width, height);
-        this.setBackground(Color.WHITE);
+        this.setOpaque(false);
         this.add(debugText);
     }
 
-    public void setText(String text) {
-        debugText.setText(text);
+    public static void setText(String text) {
+        debugText.setText(text + "\n" + debugText.getText());
     }
 }

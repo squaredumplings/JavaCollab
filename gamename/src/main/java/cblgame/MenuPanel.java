@@ -6,31 +6,26 @@ import java.awt.event.ActionListener;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MenuPanel extends JPanel implements ActionListener{
     private int scaleX;
-    private int scaleY;    
+    private int scaleY; 
+    
+    JButton startButton;
 
     public MenuPanel(int windowWidth, int windowHeight){
         scaleX = windowWidth / 16;
         scaleY = windowHeight / 12;
-        
-        // title
-        //ImageIcon icon = new ImageIcon("");
-        JLabel title = new JLabel();
-        title.setBounds(4*scaleX, 2*scaleY, 8*scaleX, 2*scaleY);
-        //title.setIcon(icon);
-        this.add(title);
 
         // start button
-        JButton startButton  = new JButton("Start");
+        startButton  = new JButton("Start");
         startButton.setBounds(6*scaleX, 5*scaleY, 4*scaleX, scaleY);
         startButton.setActionCommand("start");
         startButton.addActionListener(this);
+        startButton.setOpaque(false);
+        startButton.setBorderPainted(false);
         this.add(startButton);
-        startButton.setVisible(false);
         
 
         // options button
@@ -38,16 +33,18 @@ public class MenuPanel extends JPanel implements ActionListener{
         optionsButton.setBounds(6*scaleX, 7*scaleY, 4*scaleX, scaleY);
         optionsButton.setActionCommand("options");
         optionsButton.addActionListener(this);
+        optionsButton.setOpaque(false);
+        optionsButton.setBorderPainted(false);
         this.add(optionsButton);
-        optionsButton.setVisible(false);
 
         // quit button
         JButton quitButton  = new JButton("Quit");
         quitButton.setBounds(6*scaleX, 9*scaleY, 4*scaleX, scaleY);
         quitButton.setActionCommand("quit");
         quitButton.addActionListener(this);
+        quitButton.setOpaque(false);
+        quitButton.setBorderPainted(false);
         this.add(quitButton);
-        quitButton.setVisible(false);
 
         //panel settings
         this.setBounds(0, 0, windowWidth, windowHeight);
@@ -59,7 +56,7 @@ public class MenuPanel extends JPanel implements ActionListener{
     public void paint(Graphics g) {
         super.paint(g);
 
-        Image background = new ImageIcon("src\\main\\resources\\Game Background.png").getImage();
+        Image background = new ImageIcon("src\\main\\resources\\Background.png").getImage();
         Image title = new ImageIcon("src\\main\\resources\\Title.png").getImage();
         Image start = new ImageIcon("src\\main\\resources\\Start.png").getImage();
         Image options = new ImageIcon("src\\main\\resources\\Options.png").getImage();
@@ -76,7 +73,11 @@ public class MenuPanel extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+        switch(e.getActionCommand()) {
+            case "start": DebugPanel.setText("START PRESSED");
+            break;
+            case "quit" : DebugPanel.setText("QUIT PRESSED"); break;
+            case "options" : DebugPanel.setText("OPTIONS PRESSED"); break;
+        }
     }
 }
