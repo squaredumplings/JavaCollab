@@ -5,8 +5,6 @@ public class Main {
         final int windowWidth = 1920;
         final int windowHeight = 1080;
         
-        Window window = new Window(windowWidth, windowHeight);
-        window.addGame();
-        window.addDebug();
+        new Window(windowWidth, windowHeight);
     }
 }
