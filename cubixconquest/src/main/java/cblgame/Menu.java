@@ -9,25 +9,25 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
-public class MenuPanel extends JLayeredPane implements ActionListener{
+public class Menu extends JLayeredPane implements ActionListener {
     
-    public MenuPanel(int windowWidth, int windowHeight){
+    public Menu() {
         // images from resources
-        ImageIcon backgroundImage = new ImageIcon("src/main/resources/Background.png");
-        ImageIcon titleImage = new ImageIcon("src/main/resources/Title.png");
-        ImageIcon startImage = new ImageIcon("src/main/resources/Start.png");
-        ImageIcon optionsImage = new ImageIcon("src/main/resources/Options.png");
-        ImageIcon quitImage = new ImageIcon("src/main/resources/Quit.png");
+        final ImageIcon backgroundImage = new ImageIcon("src/main/resources/Background.png");
+        final ImageIcon titleImage = new ImageIcon("src/main/resources/Title.png");
+        final ImageIcon startImage = new ImageIcon("src/main/resources/Start.png");
+        final ImageIcon optionsImage = new ImageIcon("src/main/resources/Options.png");
+        final ImageIcon quitImage = new ImageIcon("src/main/resources/Quit.png");
 
         //panel settings
-        this.setBounds(0, 0, windowWidth, windowHeight);
+        this.setBounds(0, 0, Config.WINDOWWIDTH, Config.WINDOWHEIGHT);
         this.setBackground(Color.darkGray);
         this.setLayout(null);
         this.setVisible(true);
 
         // background
         JLabel background = new JLabel();
-        background.setBounds(0, 0, windowWidth, windowHeight);
+        background.setBounds(0, 0, Config.WINDOWWIDTH, Config.WINDOWHEIGHT);
         background.setIcon(backgroundImage);
         this.add(background, Integer.valueOf(0));
 
@@ -47,7 +47,6 @@ public class MenuPanel extends JLayeredPane implements ActionListener{
         startButton.setIcon(startImage);
         this.add(startButton, Integer.valueOf(1));
         
-
         // options button
         JButton optionsButton  = new JButton();
         optionsButton.setBounds(720, 630, 480, 90);
@@ -70,16 +69,24 @@ public class MenuPanel extends JLayeredPane implements ActionListener{
         this.add(quitButton, Integer.valueOf(1));
     }
 
+    // when action is performed it executes that buttons purpose
     @Override
     public void actionPerformed(ActionEvent e) {
-        switch(e.getActionCommand()) {
-            case "start": DebugPanel.log("START PRESSED"); 
-                        Window parentWindow = (Window) SwingUtilities.getWindowAncestor(this);
-                        parentWindow.addGame();
-                        parentWindow.removeMenu();
+        Window parentWindow = (Window) SwingUtilities.getWindowAncestor(this);
+
+        switch (e.getActionCommand()) {
+            case "start": Debug.log("START PRESSED"); 
+                parentWindow.addGame();
+                parentWindow.removeMenu();
                 break;
-            case "quit" : DebugPanel.log("QUIT PRESSED"); break;
-            case "options" : DebugPanel.log("OPTIONS PRESSED"); break;
+            case "options": Debug.log("OPTIONS PRESSED"); 
+                parentWindow.addOptions();
+                parentWindow.removeMenu();
+                break;
+            case "quit": Debug.log("QUIT PRESSED"); 
+                System.exit(34);
+                break;
+            default: Debug.log("error");
         }
     }
 }

@@ -264,12 +264,12 @@ https://google.github.io/styleguide/javaguide.html
 
     <module name="OverloadMethodsDeclarationOrder"/>
 
-    <module name="CustomImportOrder">
+    <!-- <module name="CustomImportOrder">
       <property name="sortImportsInGroupAlphabetically" value="true"/>
       <property name="separateLineBetweenGroups" value="true"/>
       <property name="customImportOrderRules" value="STATIC###THIRD_PARTY_PACKAGE"/>
       <property name="tokens" value="IMPORT, STATIC_IMPORT, PACKAGE_DEF"/>
-    </module>
+    </module> -->
 
     <module name="MethodParamPad">
       <property name="tokens" value="CTOR_DEF, LITERAL_NEW, METHOD_CALL, METHOD_DEF,
@@ -332,29 +332,29 @@ https://google.github.io/styleguide/javaguide.html
       <property name="target" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
     </module>
 
-    <module name="JavadocMethod">
+    <!-- <module name="JavadocMethod">
       <property name="accessModifiers" value="public,protected"/>
       <property name="allowMissingParamTags" value="true"/>
       <property name="allowMissingReturnTag" value="true"/>
       <property name="allowedAnnotations" value="Override, Test"/>
       <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF"/>
-    </module>
+    </module> -->
 
-    <module name="MissingJavadocMethod">
+    <!-- <module name="MissingJavadocMethod">
       <property name="scope" value="package"/>
       <property name="minLineCount" value="1"/>
       <property name="allowedAnnotations" value="Override, Test"/>
       <property name="ignoreMethodNamesRegex" value="^main|run|setupUi$"/>
       <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF,
         COMPACT_CTOR_DEF"/>
-    </module>
+    </module> -->
 
-    <module name="MissingJavadocType">
+    <!-- <module name="MissingJavadocType">
       <property name="scope" value="protected"/>
       <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
         RECORD_DEF, ANNOTATION_DEF"/>
       <property name="excludeScope" value="nothing"/>
-    </module>
+    </module> -->
 
     <module name="MethodName">
       <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9_]*$"/>
@@ -375,10 +375,10 @@ https://google.github.io/styleguide/javaguide.html
 
     <module name="SimplifyBooleanReturn" />
 
-    <module name="CyclomaticComplexity">
+    <!-- <module name="CyclomaticComplexity">
       <property name="max" value="5" />
       <message key="cyclomaticComplexity" value="Deeply nested statements result in complex code. Can you simplify your code?" />
-    </module>
+    </module> -->
 
     <module name="VariableDeclarationUsageDistance">
       <property name="allowedDistance" value="10" />

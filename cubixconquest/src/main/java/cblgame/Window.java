@@ -1,34 +1,24 @@
 package cblgame;
 
 import java.awt.Color;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
 
-public class Window extends JFrame{
-    private int windowWidth;
-    private int windowHeight;
-
-    JLayeredPane layers;
-    DebugPanel debug;
-    MenuPanel menu;
-    GamePanel game;
+public class Window extends JFrame {
+    
+    Debug debug;
+    Options options;
+    Menu menu;
+    Game game;
        
-    public Window(int x, int y){
+    public Window() {
 
-        windowHeight = y;
-        windowWidth = x;
-
-        
-        this.getLayeredPane().add(new MenuPanel(x, y), Integer.valueOf(0));
-
-        this.getLayeredPane().add(new DebugPanel(), Integer.valueOf(1));
+        this.addMenu();
+        this.addDebug();
 
         // window settings
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // close window when clicking the x
-        this.setSize(x, y);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(Config.WINDOWWIDTH, Config.WINDOWHEIGHT);
         this.setResizable(false);
         this.setTitle("Cubix Conquest");
         this.getContentPane().setBackground(Color.darkGray);
@@ -36,32 +26,50 @@ public class Window extends JFrame{
         this.setVisible(true);
     }    
 
-    public void addMenu() {
-        menu = new MenuPanel(windowWidth, windowHeight);
-        this.getLayeredPane().add(menu);
+    public void addDebug() {
+        Debug.log("adding debug");
+        debug = new Debug();
+        this.getLayeredPane().add(debug, Integer.valueOf(5));
     }
 
-    public void addDebug() {
-        debug = new DebugPanel();
-        this.getLayeredPane().add(debug);
+    public void addMenu() {
+        Debug.log("adding menu");
+        menu = new Menu();
+        this.getLayeredPane().add(menu, Integer.valueOf(1));
+    }
+
+    public void addOptions() {
+        Debug.log("adding options");
+        options = new Options();
+        this.getLayeredPane().add(options, Integer.valueOf(1));
     }
 
     public void addGame() {
-        DebugPanel.log("adding game");
-        game = new GamePanel(windowWidth, windowHeight);
-        this.getLayeredPane().add(game);
+        Debug.log("adding game");
+        game = new Game();
+        this.getLayeredPane().add(game, Integer.valueOf(0));
+        game.startGameThread();
     }
 
-    public void removeMenu() {
-        DebugPanel.log("removing menu");
-        this.getLayeredPane().remove(menu);
-    }
 
+    //// not functional maybe
     public void removeDebug() {
+        Debug.log("you're not gonna see this");
         this.getLayeredPane().remove(debug);
     }
 
+    public void removeMenu() {
+        Debug.log("removing menu");
+        this.getLayeredPane().remove(menu);
+    }
+
+    public void removeOptions() {
+        Debug.log("removing options");
+        this.getLayeredPane().remove(options);
+    }
+
     public void removeGame() {
+        Debug.log("removing game");
         this.getLayeredPane().remove(game);
     }
 }

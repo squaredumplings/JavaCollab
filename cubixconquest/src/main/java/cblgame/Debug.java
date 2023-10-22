@@ -2,16 +2,15 @@ package cblgame;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
 
 import java.awt.Color;
 
 
-public class DebugPanel extends JPanel{
+public class Debug extends JPanel {
 
     static JTextArea debugText = new JTextArea();
 
-    public DebugPanel() {
+    public Debug() {
         debugText.setText("");
         debugText.setForeground(new Color(200, 200, 200));
         debugText.setEditable(false);
@@ -26,6 +25,6 @@ public class DebugPanel extends JPanel{
     }
 
     public static void log(String text) {
-        debugText.setText(text + " " + debugText.getText());
+        debugText.setText(text + "\n" + debugText.getText());
     }
 }
