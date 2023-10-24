@@ -1,9 +1,8 @@
 package everything.entities;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -77,15 +76,17 @@ public class Player extends Entity {
     }
 
     public void draw(Graphics2D g2d) {
-        
+        // g2d.setColor(Color.red);
+        // g2d.drawRect(screenX, worldY, Config.TILESIZE, Config.TILESIZE);
+
         try {
 
             BufferedImage image = null;
 
-            image = ImageIO.read(getClass().getResourceAsStream("player.png"));
+            image = ImageIO.read(new File("/Users/mihneabuzoiu/Downloads/Player.png"));
             g2d.drawImage(image, screenX, screenY, Config.TILESIZE, Config.TILESIZE, null); 
-            //CollisionChecker.drawColision(screenX, screenY, solidArea, g2d);
-        } catch(IOException exception) {
+            
+        } catch (IOException exception) {
             exception.printStackTrace();
         }
 

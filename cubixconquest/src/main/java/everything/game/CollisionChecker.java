@@ -1,9 +1,6 @@
 package everything.game;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.Rectangle;
 
 import everything.entities.Box;
 import everything.top.Config;
@@ -30,7 +27,7 @@ public class CollisionChecker {
 
         System.out.println(topLeft + " " + x + y);
 
-        if (tileBL == 2 || tileBR == 2 || tileTL == 2 || tileTR == 2 ) {
+        if (tileBL == 2 || tileBR == 2 || tileTL == 2 || tileTR == 2) {
             return true;
         }
         return false;
