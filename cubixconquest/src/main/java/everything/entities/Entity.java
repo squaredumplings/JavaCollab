@@ -1,6 +1,5 @@
 package everything.entities;
-
-import java.awt.Rectangle;
+import everything.entities.Box;
 
 public class Entity {
     public int worldX;
@@ -10,5 +9,5 @@ public class Entity {
 
     public String direction;
 
-    public Rectangle solidArea;
+    public Box solidArea;
 }

@@ -3,6 +3,10 @@ package everything.entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import everything.game.CollisionChecker;
 import everything.game.KeyHandler;
@@ -23,7 +27,7 @@ public class Player extends Entity {
         worldY = Config.TILESIZE * 6;
         speed = 20;
         direction = "bottom"; 
-        solidArea = new Rectangle(0, 0, Config.TILESIZE, Config.TILESIZE);
+        solidArea = new Box(-20, 0, 40, 30);
     }
 
     public void update(KeyHandler keyHandler) {
@@ -73,27 +77,17 @@ public class Player extends Entity {
     }
 
     public void draw(Graphics2D g2d) {
-        switch (direction) {
-            case "top": g2d.setColor(new Color(200, 100, 100));
-                break;
-            case "topright": g2d.setColor(new Color(200, 200, 100));
-                break;
-            case "right": g2d.setColor(new Color(100, 200, 100));
-                break;
-            case "bottomright": g2d.setColor(new Color(100, 200, 200));
-                break;
-            case "bottom": g2d.setColor(new Color(100, 100, 200));
-                break;
-            case "bottomleft": g2d.setColor(new Color(200, 100, 200));
-                break;
-            case "left": g2d.setColor(new Color(200, 200, 200));
-                break;
-            case "topleft": g2d.setColor(new Color(100, 100, 100));
-                break;
-            default: g2d.setColor(new Color(0, 0, 0));
-                break;
-        }
         
-        g2d.fillRect(screenX, screenY, Config.TILESIZE, Config.TILESIZE);
+        try {
+
+            BufferedImage image = null;
+
+            image = ImageIO.read(getClass().getResourceAsStream("player.png"));
+            g2d.drawImage(image, screenX, screenY, Config.TILESIZE, Config.TILESIZE, null); 
+            //CollisionChecker.drawColision(screenX, screenY, solidArea, g2d);
+        } catch(IOException exception) {
+            exception.printStackTrace();
+        }
+
     }
 }
