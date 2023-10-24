@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
+
 public class Config {
     // resolution
     public static final int WINDOWWIDTH = 1920;
@@ -26,7 +28,7 @@ public class Config {
 
     public static void initMap() {
         try {
-            Path path = Paths.get("map.txt");
+            Path path = Path.of(Config.class.getResource("/map.txt").getPath());
             Scanner scanner = new Scanner(path); 
             int number;
             int row;

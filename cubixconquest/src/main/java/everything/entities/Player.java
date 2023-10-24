@@ -83,7 +83,7 @@ public class Player extends Entity {
 
             BufferedImage image = null;
 
-            image = ImageIO.read(new File("/Users/mihneabuzoiu/Downloads/Player.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/Player.png"));
             g2d.drawImage(image, screenX, screenY, Config.TILESIZE, Config.TILESIZE, null); 
             
         } catch (IOException exception) {
