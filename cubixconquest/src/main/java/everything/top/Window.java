@@ -1,19 +1,23 @@
-package cblgame;
+package everything.top;
 
 import java.awt.Color;
 
 import javax.swing.JFrame;
 
+import everything.game.GamePanel;
+import everything.menuscreen.MenuPanel;
+import everything.menuscreen.Options;
+
 public class Window extends JFrame {
     
     Debug debug;
     Options options;
-    Menu menu;
-    Game game;
+    MenuPanel menu;
+    GamePanel game;
        
     public Window() {
 
-        this.addMenu();
+        this.addGame();
         this.addDebug();
 
         // window settings
@@ -34,7 +38,7 @@ public class Window extends JFrame {
 
     public void addMenu() {
         Debug.log("adding menu");
-        menu = new Menu();
+        menu = new MenuPanel();
         this.getLayeredPane().add(menu, Integer.valueOf(1));
     }
 
@@ -46,7 +50,7 @@ public class Window extends JFrame {
 
     public void addGame() {
         Debug.log("adding game");
-        game = new Game();
+        game = new GamePanel();
         this.getLayeredPane().add(game, Integer.valueOf(0));
         game.startGameThread();
     }

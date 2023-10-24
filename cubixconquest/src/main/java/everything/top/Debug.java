@@ -1,4 +1,4 @@
-package cblgame;
+package everything.top;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -12,7 +12,7 @@ public class Debug extends JPanel {
 
     public Debug() {
         debugText.setText("");
-        debugText.setForeground(new Color(200, 200, 200));
+        debugText.setForeground(Color.BLACK);
         debugText.setEditable(false);
         debugText.setBounds(40, 40, 160, 200);
         debugText.setLineWrap(true);

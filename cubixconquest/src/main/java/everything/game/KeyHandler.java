@@ -1,7 +1,9 @@
-package cblgame;
+package everything.game;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import everything.top.Debug;
 
 public class KeyHandler implements KeyListener {
 

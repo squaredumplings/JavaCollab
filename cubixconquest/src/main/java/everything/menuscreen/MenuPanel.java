@@ -1,4 +1,4 @@
-package cblgame;
+package everything.menuscreen;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,9 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
-public class Menu extends JLayeredPane implements ActionListener {
+import everything.top.Config;
+import everything.top.Debug;
+import everything.top.Window;
+
+public class MenuPanel extends JLayeredPane implements ActionListener {
     
-    public Menu() {
+    public MenuPanel() {
         // images from resources
         final ImageIcon backgroundImage = new ImageIcon("src/main/resources/Background.png");
         final ImageIcon titleImage = new ImageIcon("src/main/resources/Title.png");

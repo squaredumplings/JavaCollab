@@ -1,4 +1,4 @@
-package cblgame;
+package everything.menuscreen;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -8,6 +8,9 @@ import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+
+import everything.top.Config;
+import everything.top.Window;
 
 public class Options extends JLayeredPane implements ActionListener {
 
